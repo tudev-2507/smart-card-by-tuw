@@ -41,6 +41,27 @@
             margin: 20px;
         }
 
+        @keyframes smooth-gradient {
+            0% {
+                background: linear-gradient(45deg, #8a8a8a, #6d6d6d);
+                /* Sáng */
+            }
+
+            50% {
+                background: linear-gradient(45deg, #2d2d2d, #1a1a1a);
+                /* Tối */
+            }
+
+            100% {
+                background: linear-gradient(45deg, #8a8a8a, #6d6d6d);
+                /* Quay lại sáng */
+            }
+        }
+
+        .smart-card a:hover {
+            animation-play-state: paused;
+        }
+
 
         .smart-card:hover {
             transform: scale(1.05);
@@ -57,26 +78,12 @@
             margin: 20px;
         }
 
-        @keyframes hover-color-change {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
         .smart-card h1 {
             font-size: 36px;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-weight: bold;
             margin-bottom: 20px;
-            background: linear-gradient(90deg, #ff0066, #00ccff, #00ff99, #ffcc00);
+            background: linear-gradient(90deg, #ffffff, #b6b6b6, #6d6d6d, #282828);
             background-size: 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -97,15 +104,15 @@
 
         @keyframes smooth-glow {
             0% {
-                text-shadow: 0 0 5px rgba(0, 255, 217, 0.8), 0 0 10px rgba(0, 191, 255, 0.8), 0 0 15px rgba(3, 255, 255, 0.8);
+                text-shadow: 0 0 5px rgba(65, 65, 65, 0.8), 0 0 10px rgba(65, 65, 65, 0.8), 0 0 15px rgba(65, 65, 65, 0.8);
             }
 
             50% {
-                text-shadow: 0 0 15px rgba(255, 55, 0, 0.8), 0 0 20px rgba(255, 0, 115, 0.8), 0 0 30px rgba(255, 0, 25, 0.8);
+                text-shadow: 0 0 15px rgba(248, 248, 248, 0.8), 0 0 20px rgba(203, 203, 203, 0.8), 0 0 30px rgba(203, 203, 203, 0.8);
             }
 
             100% {
-                text-shadow: 0 0 5px rgba(255, 213, 0, 0.8), 0 0 10px rgba(187, 255, 0, 0.8), 0 0 15px rgba(239, 255, 9, 0.8);
+                text-shadow: 0 0 5px rgba(203, 203, 203, 0.8), 0 0 10px rgba(203, 203, 203, 0.8), 0 0 15px rgba(248, 248, 248, 0.8);
             }
         }
 
@@ -139,7 +146,8 @@
             font-weight: bold;
             border-radius: 5px;
             padding: 10px;
-            transition: background-color 0.3s;
+            background: linear-gradient(45deg, #6d6d6d, #4c4c4c);
+            animation: smooth-gradient 4s ease-in-out infinite;
         }
 
         .smart-card a img {
@@ -149,43 +157,43 @@
         }
 
         .facebook {
-            background: linear-gradient(45deg, #e6d45c, #12c9d9);
+            background: linear-gradient(45deg, #4c4c4c, #2d2d2d);
         }
 
         .facebook:hover {
-            background: linear-gradient(135deg, #ffaf87, #50b9ff);
+            background: linear-gradient(135deg, #383838, #5f5f5f);
         }
 
         .youtube {
-            background: linear-gradient(70deg, #01ffa2, #ed0a0a);
+            background: linear-gradient(70deg, #333333, #1a1a1a);
         }
 
         .youtube:hover {
-            background: linear-gradient(135deg, #ff9190, #8be4ff);
+            background: linear-gradient(135deg, #2a2a2a, #444444);
         }
 
         .instagram {
-            background: linear-gradient(45deg, #fd1d1d, #7e15c5);
+            background: linear-gradient(45deg, #3f3f3f, #1f1f1f);
         }
 
         .instagram:hover {
-            background: linear-gradient(135deg, #ff99cc, #665eff);
+            background: linear-gradient(135deg, #2e2e2e, #4b4b4b);
         }
 
         .github {
-            background: linear-gradient(70deg, #ededed, #000000);
+            background: linear-gradient(70deg, #444444, #333333);
         }
 
         .github:hover {
-            background: linear-gradient(135deg, #bbbbbb, #505050);
+            background: linear-gradient(135deg, #383838, #5b5b5b);
         }
 
         .tiktok {
-            background: linear-gradient(45deg, #ff0050, #00f2ea);
+            background: linear-gradient(45deg, #3d3d3d, #1f1f1f);
         }
 
         .tiktok:hover {
-            background: linear-gradient(135deg, #ff7ab3, #7afff4);
+            background: linear-gradient(135deg, #292929, #444444);
         }
     </style>
 </head>
@@ -218,7 +226,6 @@
     </div>
     <audio id="background-audio" loop>
         <source src="./videoplayback-_1_.mp3" type="audio/mpeg">
-
     </audio>
 
     <script>
@@ -245,10 +252,15 @@
             ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.font = `${fontSize}px monospace`;
+
             for (let i = 0; i < drops.length; i++) {
+                const grayValue = Math.floor(drops[i] * fontSize / canvas.height * 255);
+                const textColor = `rgb(${255 - grayValue}, ${255 - grayValue}, ${255 - grayValue})`;
+
                 const text = "Connect with Me"[Math.floor(Math.random() * 15)] || " ";
-                ctx.fillStyle = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                ctx.fillStyle = textColor;
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
                 if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
                     drops[i] = 0;
                 }
@@ -256,26 +268,23 @@
             }
         }
 
-        // Đảm bảo âm thanh phát được
         profileImage.addEventListener('click', () => {
             if (audio.paused) {
                 audio.play().catch(error => {
-                    // Catch lỗi nếu trình duyệt chặn âm thanh
                     console.log("Error playing audio:", error);
                 });
             } else {
-                audio.pause(); // Tạm dừng âm thanh khi click lần nữa
+                audio.pause();
             }
-            profileImage.classList.toggle('clicked'); // Thêm lớp 'clicked' khi click vào hình ảnh
+            profileImage.classList.toggle('clicked');
         });
 
-        // Gọi hàm vẽ rain liên tục
         function animate() {
             drawRain();
-            requestAnimationFrame(animate); // Lặp lại việc vẽ
+            requestAnimationFrame(animate);
         }
 
-        animate(); // Bắt đầu vẽ canvas
+        animate();
     </script>
 </body>
 
