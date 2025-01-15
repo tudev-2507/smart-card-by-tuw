@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,7 +28,8 @@
         }
 
         .smart-card {
-            background: #161b22;
+            background: transparent;
+            /* Nền trong suốt */
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
             padding: 20px;
@@ -39,10 +41,20 @@
             margin: 20px;
         }
 
+
         .smart-card:hover {
             transform: scale(1.05);
-            background: linear-gradient(135deg, #000000, rgb(68, 23, 0), black, #98fff8);
-            animation: hover-color-change 3s linear infinite;
+            background: transparent;
+            /* Nền trong suốt */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            text-align: center;
+            width: 300px;
+            max-width: 90%;
+            position: relative;
+            transition: transform 0.3s, background 0.3s;
+            margin: 20px;
         }
 
         @keyframes hover-color-change {
@@ -85,15 +97,15 @@
 
         @keyframes smooth-glow {
             0% {
-                text-shadow: 0 0 5px rgba(0, 255, 217, 0.8), 0 0 10px rgba(157, 0, 255, 0.8), 0 0 15px rgba(255, 0, 255, 0.8);
+                text-shadow: 0 0 5px rgba(0, 255, 217, 0.8), 0 0 10px rgba(0, 191, 255, 0.8), 0 0 15px rgba(3, 255, 255, 0.8);
             }
 
             50% {
-                text-shadow: 0 0 15px rgba(238, 58, 8, 0.8), 0 0 20px rgba(255, 157, 0, 0.8), 0 0 30px rgba(255, 0, 25, 0.8);
+                text-shadow: 0 0 15px rgba(255, 55, 0, 0.8), 0 0 20px rgba(255, 0, 115, 0.8), 0 0 30px rgba(255, 0, 25, 0.8);
             }
 
             100% {
-                text-shadow: 0 0 5px rgba(255, 0, 255, 0.8), 0 0 10px rgba(0, 247, 255, 0.8), 0 0 15px rgba(62, 1, 62, 0.8);
+                text-shadow: 0 0 5px rgba(255, 213, 0, 0.8), 0 0 10px rgba(187, 255, 0, 0.8), 0 0 15px rgba(239, 255, 9, 0.8);
             }
         }
 
@@ -107,12 +119,15 @@
 
         .smart-card img.profile.clicked {
             transform: scale(1.05);
-            filter: brightness(1.2); /* Hiệu ứng khi click */
+            filter: brightness(1.2);
+            /* Hiệu ứng khi click */
         }
 
         .smart-card img.profile:hover {
-            transform: scale(1.1); /* Hiệu ứng khi hover */
-            filter: brightness(1.1); /* Hiệu ứng sáng lên khi hover */
+            transform: scale(1.1);
+            /* Hiệu ứng khi hover */
+            filter: brightness(1.1);
+            /* Hiệu ứng sáng lên khi hover */
         }
 
         .smart-card a {
@@ -178,13 +193,16 @@
 <body>
     <canvas id="background"></canvas>
     <div class="smart-card">
-        <img src="https://raw.githubusercontent.com/tudev-2507/smart-card-by-tuw/main/IMG_6983.JPG" alt="Ảnh đại diện" class="profile" id="profile-image">
+        <img src="https://raw.githubusercontent.com/tudev-2507/smart-card-by-tuw/main/IMG_6983.JPG" alt="Ảnh đại diện"
+            class="profile" id="profile-image">
         <h1>Connect With Me</h1>
         <a href="https://www.facebook.com/tuquaivatt" class="facebook" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Logo Facebook"> Facebook
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
+                alt="Logo Facebook"> Facebook
         </a>
         <a href="https://www.youtube.com/@QuaiVatTu" class="youtube" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube Logo"> YouTube
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg"
+                alt="YouTube Logo"> YouTube
         </a>
         <a href="https://www.instagram.com/tuw.bae206/" class="instagram" target="_blank">
             <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo">
@@ -260,4 +278,5 @@
         animate(); // Bắt đầu vẽ canvas
     </script>
 </body>
+
 </html>
