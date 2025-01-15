@@ -102,13 +102,17 @@
             border-radius: 10px;
             margin-bottom: 20px;
             cursor: pointer;
-            /* Thêm cursor pointer */
-            transition: transform 0.3s ease-in-out;
+            transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
         }
 
         .smart-card img.profile.clicked {
             transform: scale(1.05);
-            /* Áp dụng hiệu ứng khi click */
+            filter: brightness(1.2); /* Hiệu ứng khi click */
+        }
+
+        .smart-card img.profile:hover {
+            transform: scale(1.1); /* Hiệu ứng khi hover */
+            filter: brightness(1.1); /* Hiệu ứng sáng lên khi hover */
         }
 
         .smart-card a {
@@ -233,13 +237,17 @@
             }
         }
 
-        // Thêm sự kiện click để phát âm thanh
+        // Đảm bảo âm thanh phát được
         profileImage.addEventListener('click', () => {
             if (audio.paused) {
-                audio.play(); // Phát âm thanh khi click vào hình ảnh
+                audio.play().catch(error => {
+                    // Catch lỗi nếu trình duyệt chặn âm thanh
+                    console.log("Error playing audio:", error);
+                });
             } else {
                 audio.pause(); // Tạm dừng âm thanh khi click lần nữa
             }
+            profileImage.classList.toggle('clicked'); // Thêm lớp 'clicked' khi click vào hình ảnh
         });
 
         // Gọi hàm vẽ rain liên tục
@@ -251,5 +259,4 @@
         animate(); // Bắt đầu vẽ canvas
     </script>
 </body>
-
 </html>
