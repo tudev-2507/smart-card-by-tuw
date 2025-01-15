@@ -235,13 +235,20 @@
 
         // Thêm sự kiện click để phát âm thanh
         profileImage.addEventListener('click', () => {
-            // Kiểm tra xem âm thanh đã được phát hay chưa
             if (audio.paused) {
-                audio.play(); // Nếu âm thanh chưa phát, phát âm thanh
+                audio.play(); // Phát âm thanh khi click vào hình ảnh
             } else {
-                audio.pause(); // Nếu âm thanh đang phát, tạm dừng âm thanh
+                audio.pause(); // Tạm dừng âm thanh khi click lần nữa
             }
         });
+
+        // Gọi hàm vẽ rain liên tục
+        function animate() {
+            drawRain();
+            requestAnimationFrame(animate); // Lặp lại việc vẽ
+        }
+
+        animate(); // Bắt đầu vẽ canvas
     </script>
 </body>
 
