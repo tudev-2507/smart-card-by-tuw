@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            overflow: hidden;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .smart-card {
+            background: #161b22;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            text-align: center;
+            width: 300px;
+            max-width: 90%;
+            position: relative;
+            transition: transform 0.3s, background 0.3s;
+            margin: 20px;
+        }
+
+        .smart-card:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #000000, rgb(68, 23, 0), black, #98fff8);
+            animation: hover-color-change 3s linear infinite;
+        }
+
+        @keyframes hover-color-change {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .smart-card h1 {
+            font-size: 36px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: bold;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #ff0066, #00ccff, #00ff99, #ffcc00);
+            background-size: 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-background 5s linear infinite, smooth-glow 2s ease-in-out infinite;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        @keyframes gradient-background {
+            0% {
+                background-position: 0%;
+            }
+
+            100% {
+                background-position: 100%;
+            }
+        }
+
+        @keyframes smooth-glow {
+            0% {
+                text-shadow: 0 0 5px rgba(0, 255, 217, 0.8), 0 0 10px rgba(157, 0, 255, 0.8), 0 0 15px rgba(255, 0, 255, 0.8);
+            }
+
+            50% {
+                text-shadow: 0 0 15px rgba(238, 58, 8, 0.8), 0 0 20px rgba(255, 157, 0, 0.8), 0 0 30px rgba(255, 0, 25, 0.8);
+            }
+
+            100% {
+                text-shadow: 0 0 5px rgba(255, 0, 255, 0.8), 0 0 10px rgba(0, 247, 255, 0.8), 0 0 15px rgba(62, 1, 62, 0.8);
+            }
+        }
+
+        .smart-card img.profile {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            /* Thêm cursor pointer */
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .smart-card img.profile.clicked {
+            transform: scale(1.05);
+            /* Áp dụng hiệu ứng khi click */
+        }
+
+        .smart-card a {
+            display: block;
+            text-align: center;
+            margin: 10px 0;
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: bold;
+            border-radius: 5px;
+            padding: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .smart-card a img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .facebook {
+            background: linear-gradient(45deg, #e6d45c, #12c9d9);
+        }
+
+        .facebook:hover {
+            background: linear-gradient(135deg, #ffaf87, #50b9ff);
+        }
+
+        .youtube {
+            background: linear-gradient(70deg, #01ffa2, #ed0a0a);
+        }
+
+        .youtube:hover {
+            background: linear-gradient(135deg, #ff9190, #8be4ff);
+        }
+
+        .instagram {
+            background: linear-gradient(45deg, #fd1d1d, #7e15c5);
+        }
+
+        .instagram:hover {
+            background: linear-gradient(135deg, #ff99cc, #665eff);
+        }
+
+        .github {
+            background: linear-gradient(70deg, #ededed, #000000);
+        }
+
+        .github:hover {
+            background: linear-gradient(135deg, #bbbbbb, #505050);
+        }
+
+        .tiktok {
+            background: linear-gradient(45deg, #ff0050, #00f2ea);
+        }
+
+        .tiktok:hover {
+            background: linear-gradient(135deg, #ff7ab3, #7afff4);
+        }
+    </style>
+
+</head>
+
+<body>
+    <canvas id="background"></canvas>
+    <div class="smart-card">
+        <img src="/IMG_6983.JPG" alt="Ảnh đại diện" class="profile" id="profile-image">
+        <h1>Connect With Me</h1>
+        <a href="https://www.facebook.com/tuquaivatt" class="facebook" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
+                alt="Logo Facebook"> Facebook
+        </a>
+        <a href="https://www.youtube.com/@QuaiVatTu" class="youtube" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg"
+                alt="YouTube Logo"> YouTube
+        </a>
+        <a href="https://www.instagram.com/tuw.bae206/" class="instagram" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo">
+            Instagram
+        </a>
+        <a href="https://github.com/tudev-2507" class="github" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub Logo">
+            GitHub
+        </a>
+        <a href="https://www.tiktok.com/@vudinhtu_2507" class="tiktok" target="_blank">
+            <img src="./logo-tiktok.svg" alt="Logo TikTok"> TikTok
+        </a>
+    </div>
+    <audio id="background-audio" loop>
+        <source src="/videoplayback-_1_.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const canvas = document.getElementById('background');
+        const ctx = canvas.getContext('2d');
+        const audio = document.getElementById('background-audio');
+        const profileImage = document.getElementById('profile-image');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const drops = [];
+        const fontSize = 16;
+        const columns = Math.floor(window.innerWidth / fontSize);
+        for (let x = 0; x < columns; x++) {
+            drops[x] = Math.random() * window.innerHeight;
+        }
+
+        function drawRain() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.font = `${fontSize}px monospace`;
+            for (let i = 0; i < drops.length; i++) {
+                const text = "Connect with Me"[Math.floor(Math.random() * 15)] || " ";
+                ctx.fillStyle = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        function animate() {
+            drawRain();
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // Play audio and apply hover effect on click
+        profileImage.addEventListener('click', function () {
+            audio.play(); // Bắt đầu phát nhạc khi click
+            profileImage.classList.add('clicked'); // Thêm lớp để áp dụng hiệu ứng hover
+        });
+    </script>
+</body>
+
+</html>
